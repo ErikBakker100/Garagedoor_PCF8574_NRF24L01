@@ -36,8 +36,11 @@ IPAddress dns2(192,168,3,1);
 IPAddress gateway(192,168,3,1); //Specify the gateway in case different from the server
 IPAddress subnet(255,255,255,0);
 
+// set in RF24_config.h #define USEPCF8574 if using PCF8574
+#define CE P0 // using PCF8574 so we need to specify the pin of the PCF8574 to which the CE pin of the NRF24 is connected
+#define CSN P1 // same but now for the CSN pin of the NRF24
 PCF8574 PCF(0x20, sda, scl);
-RF24 radio(CE, HCS);
+RF24 radio(CE, CSN);
 
 // Do not modify anything below this point.
 Timer t;
@@ -86,35 +89,20 @@ void setup() {
   pinMode(STATUSLEDPIN, OUTPUT);
   SledTimerNr = t.oscillate(STATUSLEDPIN, 1000, HIGH);
   PCF.pinMode(relaisctrl, OUTPUT);
-  PCF.pinMode(nrfce, OUTPUT);
   PCF.pinMode(nrfirq, INPUT);
   PCF.pinMode(srtrig, OUTPUT); // Trigger pin HC-SR04
   PCF.pinMode(srecho, INPUT); // Echo pin HC-SR04
   PCF.begin();
+  PCF.digitalWrite(relaisctrl, LOW);
+  radio.begin(&PCF);
+  String rf24aanwezig = radio.isChipConnected()?"RF24 gevonden": "RF24 NIET gevonden";
+  Serial.println(rf24aanwezig);
   attachInterrupt(digitalPinToInterrupt(15), callback, FALLING);
-  Serial.println("HLT");
   check_if_exist_I2C();
 }
 
 void loop() {
-
-  while (Serial.available() == 0) t.update(); // update all timer events;
-  switch(Serial.read())
-  {
-    case 'a': PCF.digitalWrite(P5, HIGH);
-              Serial.println("H5");
-              break;
-    case 'b': PCF.digitalWrite(P5, LOW);
-              Serial.println("L5");
-              break;
-    case 'c': PCF.digitalWrite(P6, HIGH);
-              Serial.println("H6");
-              break;
-    case 'd': PCF.digitalWrite(P6, LOW);
-              Serial.println("L6");
-              break;
-//    case 'T': doToggle(5); break;
-  }
+  t.update(); // update all timer events;
   if (interrupt) { 
     interrupt = false;
     Serial.println("Interrupt !");

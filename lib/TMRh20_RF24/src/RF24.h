@@ -16,6 +16,7 @@
 #define __RF24_H__
 
 #include "RF24_config.h"
+#include "PCF8574.h"
 
 #if defined (RF24_LINUX) || defined (LITTLEWIRE)
   #include "utility/includes.h"
@@ -63,7 +64,6 @@ private:
 #if defined (MRAA)
   GPIO gpio;
 #endif
-
   uint16_t ce_pin; /**< "Chip Enable" pin, activates the RX or TX role */
   uint16_t csn_pin; /**< SPI Chip select */
   uint16_t spi_speed; /**< SPI Bus Speed */
@@ -76,7 +76,9 @@ private:
   bool dynamic_payloads_enabled; /**< Whether dynamic payloads are enabled. */
   uint8_t pipe0_reading_address[5]; /**< Last address set on pipe 0 for reading. */
   uint8_t addr_width; /**< The address width to use - 3,4 or 5 bytes. */
-  
+#ifdef USEPCF8574
+  PCF8574* pcf8574;
+#endif  
 
 protected:
   /**
@@ -108,9 +110,8 @@ public:
    * @param _cspin The pin attached to Chip Select
    */
   RF24(uint16_t _cepin, uint16_t _cspin);
-  //#if defined (RF24_LINUX)
   
-    /**
+  /**
   * Optional Linux Constructor
   *
   * Creates a new instance of this driver.  Before using, you create an instance
@@ -122,7 +123,6 @@ public:
   */
   
   RF24(uint16_t _cepin, uint16_t _cspin, uint32_t spispeed );
-  //#endif
 
   /**
    * Begin operation of the chip
@@ -131,6 +131,17 @@ public:
    * @code radio.begin() @endcode
    */
   bool begin(void);
+
+#ifdef USEPCF8574
+  /**
+   * Begin operation of the chip when using a PCF8574, also chech that USEPCF8574 has been set in main code
+   * 
+   * Call this in setup(), before calling any other methods
+   * @param PCF8574* Class pointer to PCF8574 to use digitalWrite function of this class 
+   * @code radio.begin(PCF8574* @endcode
+   */
+  bool begin(PCF8574 *);
+#endif  
 
   /**
    * Checks if the chip is connected to the SPI bus

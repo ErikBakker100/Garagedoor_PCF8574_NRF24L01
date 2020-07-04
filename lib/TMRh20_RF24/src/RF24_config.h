@@ -16,11 +16,12 @@
 
   /*** USER DEFINES:  ***/  
   //#define FAILURE_HANDLING
-  //#define SERIAL_DEBUG
+  #define SERIAL_DEBUG
   //#define MINIMAL
   //#define SPI_UART  // Requires library from https://github.com/TMRh20/Sketches/tree/master/SPI_UART
   //#define SOFTSPI   // Requires library from https://github.com/greiman/DigitalIO
-  
+  #define USEPCF8574 //If a PCF8574 is being used to control CSN and CE of the NRF24 this param needs to be initialised. Use the corresponding Px numbers (P0 to P7) for  CSN and CE when instantiating RF24 object. 
+
   /**********************/
   #define rf24_max(a,b) (a>b?a:b)
   #define rf24_min(a,b) (a<b?a:b)

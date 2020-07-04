@@ -215,8 +215,9 @@ bool PCF8574::begin(){
 		byteBuffered = initialBuffer;
 		writeByteBuffered = writeModeUp;
 
-		DEBUG_PRINTLN("Start end trasmission if stop here check pullup resistor.");
+		DEBUG_PRINTLN("Start end transmission if stop here check pullup resistor.");
 		this->transmissionStatus = _wire->endTransmission();
+		Serial.println("PCF8574 started");
 	}
 
 //	// If using interrupt set interrupt value to pin
@@ -228,8 +229,6 @@ bool PCF8574::begin(){
 //		::pinMode(_interruptPin, INPUT_PULLUP);
 //		::attachInterrupt(digitalPinToInterrupt(_interruptPin), (*_interruptFunction), FALLING );
 //	}
-
-
 
 	PCF8574::attachInterrupt();
 
@@ -634,7 +633,7 @@ uint8_t PCF8574::digitalRead(uint8_t pin, bool forceReadNow){
  * @param value
  */
 bool PCF8574::digitalWrite(uint8_t pin, uint8_t value){
-	DEBUG_PRINTLN("Begin trasmission");
+	DEBUG_PRINTLN("Begin transmission");
 	_wire->beginTransmission(_address);     //Begin the transmission to PCF8574
 	DEBUG_PRINT("Value ");
 	DEBUG_PRINT(value);

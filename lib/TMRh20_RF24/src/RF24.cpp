@@ -48,7 +48,9 @@ void RF24::csn(bool mode)
 	    _SPI.chipSelect(csn_pin);
 #endif
 
-#if !defined (RF24_LINUX)
+#if defined (USEPCF8574)
+  pcf8574->digitalWrite(csn_pin,mode);
+#elif !defined (RF24_LINUX)
 	digitalWrite(csn_pin,mode);
 	delayMicroseconds(csDelay);
 #endif
@@ -378,6 +380,15 @@ void RF24::printDetails(void)
 #endif
 /****************************************************************************/
 
+#if defined (USEPCF8574)
+bool RF24::begin(PCF8574* _pcf8574) {
+  pcf8574 = _pcf8574;
+  return begin();
+}
+#endif  
+
+/****************************************************************************/
+
 bool RF24::begin(void)
 {
 
@@ -419,20 +430,24 @@ bool RF24::begin(void)
 	csn(HIGH);
 	delay(200);
   #else
-    // Initialize pins
-    if (ce_pin != csn_pin) pinMode(ce_pin,OUTPUT);  
-  
-    #if ! defined(LITTLEWIRE)
-      if (ce_pin != csn_pin)
-    #endif
-        pinMode(csn_pin,OUTPUT);
+    // Initialize pins  
+    #if defined(USEPCF8574)
+      if (ce_pin != csn_pin) pcf8574->pinMode(ce_pin,OUTPUT);  
+      pcf8574->pinMode(csn_pin,OUTPUT);  
+    #else
+      if (ce_pin != csn_pin) pinMode(ce_pin,OUTPUT);  
     
+      #if ! defined(LITTLEWIRE)
+        if (ce_pin != csn_pin)
+      #endif
+          pinMode(csn_pin,OUTPUT);
+    #endif
     _SPI.begin();
     ce(LOW);
-  	csn(HIGH);
-  	#if defined (__ARDUINO_X86__)
-		delay(100);
-  	#endif
+    csn(HIGH);
+    #if defined (__ARDUINO_X86__)
+    delay(100);
+    #endif
   #endif //Linux
 
   // Must allow the radio time to settle else configuration bits will not necessarily stick.
