@@ -671,7 +671,7 @@ bool PCF8574::digitalWrite(uint8_t pin, uint8_t value){
 	byteBuffered = (writeByteBuffered & writeMode) | (initialBuffer & readMode);
 
 //	byteBuffered = (writeByteBuffered & writeMode) & (byteBuffered & readMode);
-	DEBUG_PRINTLN("Start end trasmission if stop here check pullup resistor.");
+	DEBUG_PRINTLN("End transmission.");
 
 	this->transmissionStatus = _wire->endTransmission();
 

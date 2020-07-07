@@ -107,6 +107,9 @@ uint8_t RF24::read_register(uint8_t reg)
 uint8_t RF24::write_register(uint8_t reg, const uint8_t* buf, uint8_t len)
 {
   uint8_t status;
+
+  IF_SERIAL_DEBUG(printf_P(PSTR("write_register(%02x,%02x)\r\n"),reg,len));
+
   beginTransaction();
   status = _SPI.transfer( W_REGISTER | ( REGISTER_MASK & reg ) );
   while ( len-- )
@@ -142,7 +145,6 @@ uint8_t RF24::write_payload(const void* buf, uint8_t data_len, const uint8_t wri
   
   //printf("[Writing %u bytes %u blanks]",data_len,blank_len);
   IF_SERIAL_DEBUG( printf("[Writing %u bytes %u blanks]\n",data_len,blank_len); );
-  
   beginTransaction();
   status = _SPI.transfer( writeType );
   while ( data_len-- ) {
@@ -786,8 +788,6 @@ void RF24::startWrite( const void* buf, uint8_t len, const bool multicast ){
 	delayMicroseconds(10);
   #endif
   ce(LOW);
-
-
 }
 
 /****************************************************************************/

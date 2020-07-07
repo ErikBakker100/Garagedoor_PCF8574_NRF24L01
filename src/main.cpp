@@ -41,6 +41,7 @@ IPAddress subnet(255,255,255,0);
 #define CSN P1 // same but now for the CSN pin of the NRF24
 PCF8574 PCF(0x20, sda, scl);
 RF24 radio(CE, CSN);
+byte addresses[][6] = {"1Node","2Node"};
 
 // Do not modify anything below this point.
 Timer t;
@@ -83,22 +84,34 @@ void setup() {
   // Begin Serial on 115200
   // Remember to choose the correct Baudrate on the Serial monitor!
   Serial.begin(115200);
-  delay(50);
   Serial.print ("\r\nInitialising !\r\n");
   pinMode(15, INPUT);
   pinMode(STATUSLEDPIN, OUTPUT);
   SledTimerNr = t.oscillate(STATUSLEDPIN, 1000, HIGH);
-  PCF.pinMode(relaisctrl, OUTPUT);
   PCF.pinMode(nrfirq, INPUT);
   PCF.pinMode(srtrig, OUTPUT); // Trigger pin HC-SR04
   PCF.pinMode(srecho, INPUT); // Echo pin HC-SR04
+  PCF.pinMode(relaisctrl, OUTPUT);
   PCF.begin();
   PCF.digitalWrite(relaisctrl, LOW);
-  radio.begin(&PCF);
-  String rf24aanwezig = radio.isChipConnected()?"RF24 gevonden": "RF24 NIET gevonden";
-  Serial.println(rf24aanwezig);
-  attachInterrupt(digitalPinToInterrupt(15), callback, FALLING);
   check_if_exist_I2C();
+  SPI.beginTransaction(SPISettings(8000000, MSBFIRST, SPI_MODE0));
+  radio.begin(&PCF);
+  radio.setDataRate(RF24_2MBPS); //max speed
+  radio.setChannel(0x4c);
+  // Set the PA Level low to prevent power supply related issues since this is a
+  // getting_started sketch, and the likelihood of close proximity of the devices. RF24_PA_MAX is default.
+  radio.setPALevel(RF24_PA_MAX);
+  // Open a writing and reading pipe on each radio, with opposite addresses
+  radio.openWritingPipe(addresses[0]);
+  radio.openReadingPipe(1,addresses[1]);
+  // Start the radio listening for data
+  radio.startListening();
+  radio.printDetails();
+  uint16_t tijd = millis();
+  while (millis() - tijd < 500);
+  attachInterrupt(digitalPinToInterrupt(15), callback, FALLING);
+  wdt_disable();
 }
 
 void loop() {
@@ -108,6 +121,37 @@ void loop() {
     Serial.println("Interrupt !");
   }
   if(!PCF.isLastTransmissionSuccess()) Serial.println("Transmissie fout");
+  unsigned long start_time = micros();                             // Take the time, and send it.  This will block until complete
+  Serial.print(String("Sending ") + String(start_time) +"\r\n");
+  boolean timeout = false;                                 // Set up a variable to indicate if a response was received or not
+//  radio.stopListening();                                    // First, stop listening so we can talk. 
+//  radio.write(&start_time, sizeof(unsigned long), 0);
+  radio.startListening();
+  unsigned long started_waiting_at = micros(); // Set up a timeout period, get the current microseconds
+  while ( !radio.available()){
+    // While nothing is received
+    t.update();
+    if (micros() - started_waiting_at > 200000 ){            // If waited longer than 200ms, indicate timeout and exit while loop
+        timeout = true;
+        break;
+    }      
+  }
+  if ( timeout ){                                             // Describe the results
+      Serial.print("Failed, response timed out.\r\n");
+  }else{
+      unsigned long got_time;                                 // Grab the response, compare, and send to debugging spew
+      radio.read( &got_time, sizeof(unsigned long) );
+      unsigned long end_time = micros();
+      // Spew it
+      Serial.print(String("Response : ") + String(got_time));
+      Serial.print(String(" Round-trip delay : ") + String(end_time - start_time) + " micros\r\n");
+  }
+  // Try again 1s later
+  unsigned long waittime{millis()};
+  while (millis()-waittime < 1000) {
+    t.update();
+  }
+  Serial.println(radio.isChipConnected()?"Ja":"Nee");
 }
 
 ICACHE_RAM_ATTR void callback() {
