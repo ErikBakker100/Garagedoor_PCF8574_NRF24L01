@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name HCSR04)(type Legacy)(uri ${NAS_LIB}/kicad-symbols/HCSR04.lib)(options "")(descr ""))
+  (lib (name Relais)(type Legacy)(uri ${NAS_LIB}/kicad-symbols/Relais.lib)(options "")(descr ""))
+  (lib (name Connector2)(type Legacy)(uri ${NAS_LIB}/kicad-symbols/Connector2.lib)(options "")(descr ""))
+)

@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name Relais2)(type KiCad)(uri ${NAS_LIB}/kicad-footprints/Relais2.pretty)(options "")(descr ""))
+  (lib (name FuseClip)(type KiCad)(uri ${NAS_LIB}/kicad-footprints/FuseClip.pretty)(options "")(descr ""))
+  (lib (name ICs)(type KiCad)(uri ${NAS_LIB}/kicad-footprints/ICs.pretty)(options "")(descr ""))
+)

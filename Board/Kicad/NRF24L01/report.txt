@@ -1,0 +1,134 @@
+Info: Reading netlist file "G:\ESP2866\NRF24\Board\Kicad\NRF24L01\NRF24L01.net".
+
+Info: Using references to match components and footprints.
+
+Warning: Footprint of symbol "F1" changed: board footprint "Fuse:Fuse_3x10mm", netlist footprint "Fuse:fuse-clip-5x20mm"
+
+Info: Checking netlist symbol footprint "C1:/5BE87DFA:Capacitor_SMD:C_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "C2:/5BE87E90:Capacitor_SMD:C_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "C3:/5BE901E8:Capacitor_SMD:C_1206_3216Metric".
+
+Info: Checking netlist symbol footprint "C4:/5BE902AC:Capacitor_SMD:C_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "C5:/5BE97978:Capacitor_SMD:C_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "C6:/5BE986DB:Capacitor_SMD:C_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "C7:/5BE89318:Capacitor_SMD:C_1206_3216Metric".
+
+Info: Checking netlist symbol footprint "C8:/5BE89873:Capacitor_SMD:C_1206_3216Metric".
+
+Info: Checking netlist symbol footprint "C9:/5BE89710:Capacitor_SMD:C_0805_2012Metric".
+
+Info: Checking netlist symbol footprint "C10:/5AB55640:Capacitor_SMD:C_1206_3216Metric".
+
+Info: Checking netlist symbol footprint "C11:/5AFF3359:Capacitor_SMD:C_1206_3216Metric".
+
+Info: Checking netlist symbol footprint "C12:/5AB57C3E:Capacitor_SMD:C_1206_3216Metric".
+
+Info: Checking netlist symbol footprint "D1:/5BEB5DDC:LED_SMD:LED_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "D2:/5B00AAE2:LED_SMD:LED_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "F1:/5BEB5DE0:Fuse:fuse-clip-5x20mm".
+
+Info: Checking netlist symbol footprint "J1:/5BEAC4A5:Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical".
+
+Info: Checking netlist symbol footprint "J2:/5BEB5DDF:Connector:BARREL_JACK".
+
+Info: Checking netlist symbol footprint "J3:/5C08C17F:Connector_Molex:Molex_PicoBlade_53047-1010_1x05_P1.25mm_Vertical".
+
+Info: Checking netlist symbol footprint "J4:/5AB57835:Connector_Molex:Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical".
+
+Info: Checking netlist symbol footprint "J5:/5BEB5DE5:Connector_JST:JST_NV_B02P-NV_1x02_P5.00mm_Vertical".
+
+Info: Checking netlist symbol footprint "J6:/5BEC2DD0:Connector_Molex:Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical".
+
+Info: Checking netlist symbol footprint "K1:/5C169696:Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A".
+
+Info: Checking netlist symbol footprint "L1:/5BE8B589:Inductor_SMD:L_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "L2:/5BE8F30B:Inductor_SMD:L_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "L3:/5BE8D9CC:Inductor_SMD:L_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "MK1:/5AC1D8C3:MountingHole:MountingHole_3.2mm_M3".
+
+Info: Checking netlist symbol footprint "MK2:/5B04903C:MountingHole:MountingHole_3.2mm_M3".
+
+Info: Checking netlist symbol footprint "MK3:/5B049169:MountingHole:MountingHole_3.2mm_M3".
+
+Info: Checking netlist symbol footprint "MK4:/5AC1DA5F:MountingHole:MountingHole_3.2mm_M3".
+
+Info: Checking netlist symbol footprint "MK5:/5B0490F6:MountingHole:MountingHole_3.2mm_M3".
+
+Info: Checking netlist symbol footprint "MK6:/5B0491E3:MountingHole:MountingHole_3.2mm_M3".
+
+Info: Checking netlist symbol footprint "Q1:/5AB59630:Package_TO_SOT_SMD:SOT-23".
+
+Info: Checking netlist symbol footprint "R1:/5BE87F8E:Resistor_SMD:R_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "R2:/5BE88DFB:Resistor_SMD:R_0402_1005Metric".
+
+Info: Checking netlist symbol footprint "R3:/5BEB5DD9:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R4:/5BEB5DDB:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R5:/5BEB5DDA:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R6:/5BF0615F:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R7:/5BFFF019:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R8:/5AB57601:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R9:/5B00CB9D:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "R10:/5AB597A2:Resistor_SMD:R_0603_1608Metric".
+
+Info: Checking netlist symbol footprint "U1:/5BE87CAB:Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.5x2.5mm".
+
+Info: Checking netlist symbol footprint "U2:/5BEB5DE8:ESP8266:ESP-12E_SMD".
+
+Info: Checking netlist symbol footprint "U3:/5AFF3235:Package_TO_SOT_SMD:SOT-223-3_TabPin2".
+
+Info: Checking netlist symbol footprint "Y1:/5BE88132:Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm".
+
+Remove single pad net "Net-(U2-Pad2)" on "U2" pad "2"
+
+Remove single pad net "Net-(U2-Pad17)" on "U2" pad "17"
+
+Remove single pad net "Net-(U2-Pad18)" on "U2" pad "18"
+
+Remove single pad net "Net-(U2-Pad21)" on "U2" pad "21"
+
+Remove single pad net "Net-(U2-Pad22)" on "U2" pad "22"
+
+Remove single pad net "Net-(J5-Pad1)" on "J5" pad "1"
+
+Remove single pad net "Net-(J5-Pad2)" on "J5" pad "2"
+
+Error: Component "J1" pad "SH" not found in footprint "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical"
+
+Error: Component "K1" pad "14" not found in footprint "Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A"
+
+Error: Component "K1" pad "A2" not found in footprint "Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A"
+
+Error: Component "K1" pad "A1" not found in footprint "Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A"
+
+Error: Component "K1" pad "11" not found in footprint "Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A"
+
+Error: Component "MK1" pad "1" not found in footprint "MountingHole:MountingHole_3.2mm_M3"
+
+Error: Component "MK2" pad "1" not found in footprint "MountingHole:MountingHole_3.2mm_M3"
+
+Error: Component "MK3" pad "1" not found in footprint "MountingHole:MountingHole_3.2mm_M3"
+
+Error: Component "MK4" pad "1" not found in footprint "MountingHole:MountingHole_3.2mm_M3"
+
+Error: Component "MK5" pad "1" not found in footprint "MountingHole:MountingHole_3.2mm_M3"
+
+Error: Component "MK6" pad "1" not found in footprint "MountingHole:MountingHole_3.2mm_M3"
+
